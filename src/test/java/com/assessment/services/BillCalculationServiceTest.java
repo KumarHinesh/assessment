@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.mockito.Mockito;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
@@ -42,18 +43,11 @@ public class BillCalculationServiceTest {
         ));
 
 
-        when(exchangeClient.getExchangeRate("USD", "PKR")).thenReturn(280.0);
+        when(exchangeClient.getExchangeRate("USD", "PKR")).thenReturn(Optional.of(280.0));
 
         BillResponse response = billCalculationService.calculateBillDetails(bill);
 
 
-        double total = 1100.0;
-        double nonGrocery = 1000.0;
-        double percentageDiscount = 1000.0 * 0.30; // 300
-        double flatDiscount = Math.floor(1100 / 100) * 5; // 55
-        double totalDiscount = percentageDiscount + flatDiscount; // 355
-        double discountedAmount = total - totalDiscount; // 745
-        double finalAmount = discountedAmount * 80; // 59600
 
         assertEquals("PKR", response.getTargetedCurrency());
 
@@ -71,7 +65,7 @@ public class BillCalculationServiceTest {
                 new Item("Laptop", ItemCategory.ELECTRONICS, 1000.0)
         ));
 
-        when(exchangeClient.getExchangeRate("USD", "PKR")).thenReturn(280.0);
+        when(exchangeClient.getExchangeRate("USD", "PKR")).thenReturn(Optional.of(280.0));
 
         BillResponse response = billCalculationService.calculateBillDetails(bill);
 

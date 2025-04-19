@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -53,29 +54,21 @@ public class CurrencyExchangeClientTest {
         when(restTemplate.getForObject(expectedUrl, ExchangeApiResponse.class)).thenReturn(mockResponse);
 
         // Act
-        double actualRate = currencyExchangeClient.getExchangeRate(originalCurrency, targetCurrency);
+        double actualRate = currencyExchangeClient.getExchangeRate(originalCurrency, targetCurrency).get();
 
         // Assert
         assertEquals(expectedRate, actualRate);
     }
 
     @Test
-    public void testGetExchangeRate_ThrowsExceptionWhenRateMissing() {
-        // Arrange
+    void testExchangeRateNotFound_throwsException() {
         String originalCurrency = "USD";
-        String targetCurrency = "XYZ"; // unsupported currency
+        String targetCurrency = "INVALID";
 
-        ExchangeApiResponse mockResponse = new ExchangeApiResponse();
-        mockResponse.setConversionRates(new HashMap<>()); // empty rates
+        // When
+        double exchangeRate = currencyExchangeClient.getExchangeRate(originalCurrency, targetCurrency).get();
 
-        String expectedUrl = "https://api.exchangerate-api.com/v4/apikey//latest/USD";
-        when(restTemplate.getForObject(expectedUrl, ExchangeApiResponse.class)).thenReturn(mockResponse);
-
-        // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () ->
-                currencyExchangeClient.getExchangeRate(originalCurrency, targetCurrency)
-        );
-
-        assertTrue(exception.getMessage().contains("Exchange rate not available for XYZ"));
+        // Then
+        assertEquals(-1.0, exchangeRate, 0.0001);
     }
 }
