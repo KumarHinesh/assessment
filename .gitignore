@@ -1,0 +1,17 @@
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+
+# Maven
+target/
+dependency-reduced-pom.xml
+release.properties
+
+
+# API keys, secrets
+#application.properties
+#application.yml
