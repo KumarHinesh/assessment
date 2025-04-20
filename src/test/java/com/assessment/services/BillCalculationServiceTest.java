@@ -6,7 +6,7 @@ import com.assessment.enums.UserType;
 import com.assessment.model.Bill;
 import com.assessment.model.Item;
 import com.assessment.service.BillCalculationService;
-import com.assessment.service.CurrencyExchangeClient;
+import com.assessment.client.CurrencyExchangeClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

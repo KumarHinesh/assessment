@@ -3,7 +3,7 @@
 //
 //import com.assessment.controller.BillCalculationController;
 //import com.assessment.service.BillCalculationService;
-//import com.assessment.service.CurrencyExchangeClient;
+//import com.assessment.client.CurrencyExchangeClient;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.InjectMocks;
 //import org.mockito.Mock;

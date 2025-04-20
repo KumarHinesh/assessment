@@ -1,4 +1,4 @@
-package com.assessment.service;
+package com.assessment.client;
 
 import com.assessment.dto.ExchangeApiResponse;
 import com.assessment.exceptions.CurrencyExchangeException;
@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 

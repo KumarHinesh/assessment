@@ -1,6 +1,7 @@
 package com.assessment.service;
 
 
+import com.assessment.client.CurrencyExchangeClient;
 import com.assessment.dto.BillResponse;
 import com.assessment.enums.ItemCategory;
 import com.assessment.exceptions.ExchangeRateNotFoundException;
@@ -54,13 +55,6 @@ public class BillCalculationService {
                 exchangeRate
         );
     }
-
-    /**
-     * This method calculates the discount rate based on user type and customer tenure.
-     *
-     * @param bill The bill object containing user type and customer tenure.
-     * @return The discount rate as a double.
-     */
 
     private double getDiscountRate(Bill bill) {
         return switch (bill.getUserType()) {

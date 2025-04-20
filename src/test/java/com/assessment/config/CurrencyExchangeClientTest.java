@@ -1,14 +1,13 @@
-package com.assessment.services;
+package com.assessment.config;
 
 import com.assessment.dto.ExchangeApiResponse;
-import com.assessment.service.CurrencyExchangeClient;
+import com.assessment.client.CurrencyExchangeClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

@@ -3,13 +3,22 @@ package com.assessment.model;
 import com.assessment.enums.UserType;
 import lombok.Data;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import lombok.NonNull;
+import org.springframework.validation.annotation.Validated;
+
 import java.util.List;
 
 
 @Data
 public class Bill {
 
+
+    @NotNull(message = "Items Cannot be null")
+    @Valid
     private List<Item> items;
+
     private UserType userType;
     private int customerTenureInYears;
     private String originalCurrency;
