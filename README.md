@@ -12,6 +12,7 @@ This Spring Boot application calculates billing amounts for users based on item 
 - Secure endpoints with Basic Authentication.
 - Easy configuration through `application.properties`.
 - Full test coverage with JUnit and Mockito.
+- Gracefully handles errors, exceptions such as missing exchange rates or reflection field access issues.
 
 
 ## 📋 Project Overview
@@ -49,4 +50,67 @@ This project provides a Billing and Currency Exchange service that calculates th
 
 You can also run the tests with:
 ```bash
-mvn test
+  mvn test
+  ``` 
+
+
+## API Endpoint
+- URL: /api/calculate
+- Method: POST
+- Request Body
+   {
+    "userType": "CUSTOMER",
+    "customerTenureInYears": 1,
+    "originalCurrency": "USD",
+    "targetCurrency": "AED",
+    "items": [
+        {
+            "name": "Laptop",
+            "price": 1200,
+            "category": "ELECTRONICS"
+        },
+        {
+            "name": "Bread",
+            "price": 20,
+            "category": "GROCERY"
+        },
+        {
+            "name": "Shoes",
+            "price": 150,
+            "category": "CLOTHING"
+        }
+    ]
+}
+
+## Usage with cURL
+
+curl --location 'http://localhost:8080/api/calculate' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4xMjM=' \
+--header 'Cookie: JSESSIONID=00BD47D0E52FCC1844FF154C74182613' \
+--data '{
+    "userType": "CUSTOMER",
+    "customerTenureInYears": 1,
+    "originalCurrency": "USD",
+    "targetCurrency": "AED",
+    "items": [
+        {
+            "name": "Laptop",
+            "price": 1200,
+            "category": "ELECTRONICS"
+        },
+        {
+            "name": "Bread",
+            "price": 20,
+            "category": "GROCERY"
+        },
+        {
+            "name": "Shoes",
+            "price": 150,
+            "category": "CLOTHING"
+        }
+    ]
+}'
+
+
+
